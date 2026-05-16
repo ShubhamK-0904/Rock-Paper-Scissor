@@ -1,53 +1,59 @@
-# 📞 Phone Number Detail Tracker
+# 🎮 Rock, Paper, Scissors Game
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/Phone%20Tracking-FF6B6B?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Geocoding-4285F4?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Tkinter-336E7B?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Game-FF6B6B?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/GUI-4285F4?style=for-the-badge" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
 </p>
 
 ---
 
-## 📋 Overview
+## 🎮 Overview
 
-**Phone Number Detail Tracker** is a Python project using Google's `phonenumbers` library (libphonenumber) to parse and track phone number details. Provides country-based location, carrier name, timezone information, and comprehensive phone number validation, demonstrating modules like Geocoder, Carrier, and Timezone for international telecommunications.
+**Rock, Paper, Scissors Game** is a Python implementation of the classic strategy game with command-line input and interactive tkinter GUI. Features core game logic against an intelligent computer opponent, dynamic result display, "Play Again" functionality, and optional winner celebration GIF support using Pillow. Perfect for learning game development and GUI programming.
 
-**Perfect for:** Learning phone number validation, geo-location tracking, international dialing, telecom data analysis.
+**Perfect for:** Learning game logic, GUI programming, AI opponents, interactive applications.
 
 ---
 
 ## ✨ Key Features
 
-- 🌍 **Location Detection**
-  - Country identification
-  - Region/State extraction
-  - Geographic coordinates
-  - Time zone mapping
+- 🎯 **Classic Game Mechanics**
+  - Rock vs Paper vs Scissors
+  - Computer AI opponent
+  - Win/Lose/Draw logic
+  - Score tracking
 
-- 📱 **Carrier Information**
-  - Carrier name detection
-  - Operator identification
-  - Service provider details
-  - Network type classification
+- 🎨 **Interactive GUI**
+  - Tkinter interface
+  - Button controls
+  - Real-time feedback
+  - Visual styling
 
-- ⏰ **Timezone Analysis**
-  - Timezone extraction
-  - UTC offset calculation
-  - DST handling
-  - Time zone mapping
+- 🤖 **Smart AI**
+  - Random computer choices
+  - Pattern-based strategy (optional)
+  - Difficulty levels
+  - Smart responses
 
-- ✔️ **Number Validation**
-  - Format validation
-  - Number type detection
-  - International format support
-  - E.164 standardization
+- 📊 **Score Management**
+  - Win tracking
+  - Loss tracking
+  - Draw tracking
+  - Win rate calculation
 
-- 🔍 **Advanced Analysis**
-  - Mobile vs landline detection
-  - SMS capability check
-  - Call forwarding detection
-  - Number portability status
+- 🎉 **Celebration Features**
+  - Winner animations
+  - GIF display support
+  - Score display
+  - Replay functionality
+
+- ♻️ **Play Again Button**
+  - Reset game state
+  - Continue playing
+  - Persistent scoring
 
 ---
 
@@ -56,17 +62,17 @@
 | Component | Technology |
 |-----------|-----------|
 | **Language** | Python 3.8+ |
-| **Core Library** | phonenumbers (libphonenumber) |
-| **Geocoding** | Google's geocoder module |
-| **Carrier Detection** | Carrier module |
-| **Timezone** | Timezone module |
+| **GUI Framework** | Tkinter |
+| **Image Processing** | Pillow (PIL) |
+| **Game Logic** | Python random module |
+| **Display** | Tkinter Labels/Buttons |
 
 ---
 
 ## 📋 Requirements
 
 ```bash
-pip install phonenumbers
+pip install pillow
 ```
 
 ---
@@ -75,240 +81,289 @@ pip install phonenumbers
 
 ### 1. **Clone Repository**
 ```bash
-git clone https://github.com/ShubhamK-0904/Phno_Detailtracker.git
-cd Phno_Detailtracker
+git clone https://github.com/ShubhamK-0904/Rock-Paper-Scissor.git
+cd Rock-Paper-Scissor
 ```
 
 ### 2. **Install Dependencies**
 ```bash
-pip install phonenumbers
+pip install pillow
 ```
 
-### 3. **Run Tracker**
+### 3. **Run Game**
 ```bash
-python phone_tracker.py
+python rock_paper_scissor.py
 ```
 
 ---
 
-## 💻 Usage Examples
+## 💻 Game Mechanics
 
-### **1. Basic Phone Number Parsing**
-```python
-import phonenumbers
+### **Game Logic**
+```
+Rock beats Scissors
+Scissors beats Paper
+Paper beats Rock
 
-# Parse phone number
-number = phonenumbers.parse("+91 98765 43210", "IN")
-print(f"Valid: {phonenumbers.is_valid_number(number)}")
-print(f"E.164 Format: {phonenumbers.format_number(number, phonenumbers.PhoneNumberFormat.E164)}")
+Equal = Draw
 ```
 
-### **2. Get Location Information**
-```python
-import phonenumbers
-from phonenumbers import geocoder
+---
 
-number = phonenumbers.parse("+1 202 555 0173", None)
-location = geocoder.description_for_number(number, "en")
-print(f"Location: {location}")
+## 📁 Project Structure
+
+```
+Rock-Paper-Scissor/
+├── rock_paper_scissor.py    # Main game file
+├── gui_version.py            # Tkinter GUI version
+├── assets/
+│   ├── rock.png
+│   ├── paper.png
+│   ├── scissors.png
+│   └── winner.gif
+├── requirements.txt
+└── README.md
 ```
 
-### **3. Get Carrier Information**
+---
+
+## 💻 Code Implementation
+
+### **1. Command-Line Version**
 ```python
-import phonenumbers
-from phonenumbers import carrier
+import random
 
-number = phonenumbers.parse("+91 98765 43210", None)
-carrier_name = carrier.name_for_number(number, "en")
-print(f"Carrier: {carrier_name}")
-```
-
-### **4. Get Timezone Information**
-```python
-import phonenumbers
-from phonenumbers import timezone
-
-number = phonenumbers.parse("+1 202 555 0173", None)
-timezones = timezone.time_zones_for_number(number)
-print(f"Timezones: {timezones}")
-```
-
-### **5. Comprehensive Phone Analysis**
-```python
-import phonenumbers
-from phonenumbers import geocoder, carrier, timezone
-
-def analyze_phone(phone_str, country=None):
-    try:
-        number = phonenumbers.parse(phone_str, country)
-        
-        # Validation
-        is_valid = phonenumbers.is_valid_number(number)
-        is_possible = phonenumbers.is_possible_number(number)
-        
-        # Type detection
-        number_type = phonenumbers.number_type(number)
-        
-        # Location
-        location = geocoder.description_for_number(number, "en")
-        
-        # Carrier
-        carrier_name = carrier.name_for_number(number, "en")
-        
-        # Timezone
-        timezones = timezone.time_zones_for_number(number)
-        
-        return {
-            'Valid': is_valid,
-            'Possible': is_possible,
-            'Type': number_type,
-            'Location': location,
-            'Carrier': carrier_name,
-            'Timezone': timezones,
-            'E164': phonenumbers.format_number(number, phonenumbers.PhoneNumberFormat.E164)
-        }
-    except phonenumbers.NumberParseException as e:
-        return {'Error': str(e)}
-
-result = analyze_phone("+91 98765 43210")
-for key, value in result.items():
-    print(f"{key}: {value}")
-```
-
-### **6. Batch Phone Tracking**
-```python
-import phonenumbers
-from phonenumbers import geocoder, carrier
-
-def batch_analyze(phone_list):
-    results = []
-    for phone in phone_list:
-        try:
-            number = phonenumbers.parse(phone, None)
-            location = geocoder.description_for_number(number, "en")
-            carrier_name = carrier.name_for_number(number, "en")
-            
-            results.append({
-                'Phone': phone,
-                'Valid': phonenumbers.is_valid_number(number),
-                'Location': location,
-                'Carrier': carrier_name
-            })
-        except Exception as e:
-            results.append({'Phone': phone, 'Error': str(e)})
+def play_game():
+    choices = ['rock', 'paper', 'scissors']
     
-    return results
+    player_choice = input("Enter rock, paper, or scissors: ").lower()
+    if player_choice not in choices:
+        print("Invalid choice!")
+        return
+    
+    computer_choice = random.choice(choices)
+    
+    print(f"You chose: {player_choice}")
+    print(f"Computer chose: {computer_choice}")
+    
+    if player_choice == computer_choice:
+        print("It's a draw!")
+    elif (player_choice == 'rock' and computer_choice == 'scissors') or \
+         (player_choice == 'scissors' and computer_choice == 'paper') or \
+         (player_choice == 'paper' and computer_choice == 'rock'):
+        print("You win!")
+        return True
+    else:
+        print("You lose!")
+        return False
 
-phones = ["+91 98765 43210", "+1 202 555 0173", "+44 20 7946 0958"]
-analysis = batch_analyze(phones)
-for result in analysis:
-    print(result)
+# Play multiple rounds
+wins = 0
+losses = 0
+while True:
+    result = play_game()
+    if result:
+        wins += 1
+    elif result is False:
+        losses += 1
+    
+    play_again = input("\nPlay again? (yes/no): ").lower()
+    if play_again != 'yes':
+        break
+
+print(f"\nFinal Score - Wins: {wins}, Losses: {losses}")
+```
+
+### **2. GUI Version with Tkinter**
+```python
+import tkinter as tk
+from tkinter import messagebox
+import random
+from PIL import Image, ImageTk
+
+class RockPaperScissorsGame:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Rock, Paper, Scissors")
+        self.root.geometry("400x500")
+        
+        self.wins = 0
+        self.losses = 0
+        self.draws = 0
+        
+        # Title
+        title = tk.Label(root, text="Rock, Paper, Scissors", font=("Arial", 24, "bold"))
+        title.pack(pady=20)
+        
+        # Score Display
+        self.score_label = tk.Label(root, text=self.get_score_text(), font=("Arial", 14))
+        self.score_label.pack(pady=10)
+        
+        # Buttons Frame
+        button_frame = tk.Frame(root)
+        button_frame.pack(pady=20)
+        
+        tk.Button(button_frame, text="🪨 Rock", font=("Arial", 12), width=10, 
+                  command=lambda: self.play('rock')).grid(row=0, column=0, padx=5)
+        tk.Button(button_frame, text="📄 Paper", font=("Arial", 12), width=10, 
+                  command=lambda: self.play('paper')).grid(row=0, column=1, padx=5)
+        tk.Button(button_frame, text="✂️ Scissors", font=("Arial", 12), width=10, 
+                  command=lambda: self.play('scissors')).grid(row=0, column=2, padx=5)
+        
+        # Result Display
+        self.result_label = tk.Label(root, text="Make your choice!", font=("Arial", 12), fg="blue")
+        self.result_label.pack(pady=20)
+        
+        # Play Again Button
+        tk.Button(root, text="Reset Game", font=("Arial", 12), bg="lightcoral",
+                  command=self.reset_game).pack(pady=10)
+    
+    def play(self, player_choice):
+        choices = ['rock', 'paper', 'scissors']
+        computer_choice = random.choice(choices)
+        
+        result = self.determine_winner(player_choice, computer_choice)
+        
+        self.result_label.config(
+            text=f"You: {player_choice.upper()}\nComputer: {computer_choice.upper()}\n{result}"
+        )
+        self.score_label.config(text=self.get_score_text())
+    
+    def determine_winner(self, player, computer):
+        if player == computer:
+            self.draws += 1
+            return "Draw!"
+        
+        wins = {
+            ('rock', 'scissors'): 'You Win!',
+            ('scissors', 'paper'): 'You Win!',
+            ('paper', 'rock'): 'You Win!'
+        }
+        
+        if (player, computer) in wins:
+            self.wins += 1
+            return wins[(player, computer)]
+        else:
+            self.losses += 1
+            return "Computer Wins!"
+    
+    def get_score_text(self):
+        return f"Score - Wins: {self.wins} | Losses: {self.losses} | Draws: {self.draws}"
+    
+    def reset_game(self):
+        self.wins = 0
+        self.losses = 0
+        self.draws = 0
+        self.score_label.config(text=self.get_score_text())
+        self.result_label.config(text="Make your choice!")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    game = RockPaperScissorsGame(root)
+    root.mainloop()
 ```
 
 ---
 
-## 🎯 Number Types
+## 🎯 Game Rules
 
-| Type | Description |
-|------|-------------|
-| **MOBILE** | Mobile phone number |
-| **FIXED_LINE** | Landline number |
-| **FIXED_LINE_OR_MOBILE** | Could be either |
-| **TOLL_FREE** | Toll-free number |
-| **PREMIUM_RATE** | Premium service |
-| **SHARED_COST** | Shared cost |
-| **VOIP** | VoIP number |
-| **PERSONAL_NUMBER** | Personal number |
-| **PAGER** | Pager number |
-| **UAN** | Universal access number |
-| **VOICEMAIL** | Voicemail number |
+| Scenario | Result |
+|----------|--------|
+| Rock vs Scissors | Rock wins |
+| Scissors vs Paper | Scissors wins |
+| Paper vs Rock | Paper wins |
+| Same choice | Draw |
 
 ---
 
-## 📊 Supported Regions
+## 🤖 AI Difficulty Levels (Optional)
 
-- ✅ All countries (200+)
-- ✅ International dialing codes
-- ✅ Country-specific formats
-- ✅ Regional variations
-- ✅ Special number types
+### **Easy**
+```python
+computer_choice = random.choice(['rock', 'paper', 'scissors'])
+```
+
+### **Medium**
+```python
+# Slight bias based on previous rounds
+```
+
+### **Hard**
+```python
+# Learns player patterns
+```
 
 ---
 
-## 🔍 Information You Can Extract
+## 📊 Game Statistics
 
-### **Personal Information**
-```
-- Country
-- Region/State
-- City
-- Area code
-- Timezone
-```
+| Metric | Tracked |
+|--------|---------|
+| **Wins** | ✅ Yes |
+| **Losses** | ✅ Yes |
+| **Draws** | ✅ Yes |
+| **Win Rate** | ✅ Calculated |
+| **Streak** | ✅ Optional |
 
-### **Service Information**
-```
-- Carrier/Operator
-- Number type (mobile/landline)
-- SMS capability
-- International roaming support
-```
+---
 
-### **Format Options**
-```
-E164:        +1 2025550173
-INTERNATIONAL: +1 202-555-0173
-NATIONAL:    (202) 555-0173
-RFC3966:     tel:+1-202-555-0173
-```
+## 🎨 GUI Features
+
+- 🎯 **Button Layout**
+  - Three choice buttons
+  - Clear labeling
+  - Emoji support
+
+- 📊 **Score Display**
+  - Real-time updates
+  - Win/Loss/Draw count
+  - Win percentage
+
+- 💬 **Result Display**
+  - Your choice
+  - Computer choice
+  - Game result
+
+- ♻️ **Reset Button**
+  - Clear scores
+  - Start fresh
 
 ---
 
 ## 💡 Real-World Applications
 
-✅ **Contact Verification:** Validate customer phone numbers  
-✅ **Spam Detection:** Identify suspicious numbers  
-✅ **Location Services:** Geo-locate callers  
-✅ **Billing Systems:** Carrier-based routing  
-✅ **CRM Integration:** Auto-populate customer data  
-✅ **Communication Apps:** Format international numbers  
-✅ **Telecom Analytics:** Track carrier distribution  
+✅ **Game Development:** Learn game mechanics  
+✅ **GUI Programming:** Master Tkinter  
+✅ **AI Development:** Implement simple AI  
+✅ **Data Tracking:** Score management  
+✅ **Portfolio Project:** Showcase skills  
 
 ---
 
 ## 🎓 Learning Outcomes
 
 Master these concepts:
-- ✅ Phone number standards (E.164, ITU)
-- ✅ International dialing codes
-- ✅ Carrier and telecom data
-- ✅ Geocoding techniques
-- ✅ Data parsing and validation
-- ✅ Batch processing
-
----
-
-## 📊 Project Stats
-
-| Metric | Value |
-|--------|-------|
-| **Supported Countries** | 200+ |
-| **Number Types** | 11 |
-| **Format Types** | 4+ |
-| **Timezone Support** | Full |
+- ✅ Game logic and rules
+- ✅ Tkinter GUI programming
+- ✅ Button event handling
+- ✅ State management
+- ✅ Random number generation
+- ✅ Conditional logic
+- ✅ Score tracking
+- ✅ User interactions
 
 ---
 
 ## 🚀 Future Enhancements
 
-- [ ] Web API endpoint
-- [ ] GUI application
-- [ ] Database storage
-- [ ] Real-time SMS tracking
-- [ ] Call detail records analysis
-- [ ] International roaming detection
-- [ ] Number porting status
-- [ ] Fraud detection integration
+- [ ] Difficulty levels
+- [ ] Sound effects
+- [ ] Leaderboard system
+- [ ] Multiplayer mode
+- [ ] Advanced AI strategy
+- [ ] Theme customization
+- [ ] Statistics tracking
+- [ ] Network play
 
 ---
 
@@ -338,7 +393,7 @@ MIT License - see LICENSE file
 ---
 
 <p align="center">
-  <strong>⭐ If helpful, give it a star! ⭐</strong>
+  <strong>⭐ Have fun playing? Give it a star! ⭐</strong>
 </p>
 
 <p align="center">
