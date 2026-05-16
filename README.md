@@ -1,65 +1,346 @@
-# 🪨📄✂️ Rock, Paper, Scissors Game
+# 📞 Phone Number Detail Tracker
 
-A simple command-line and **partially integrated GUI** implementation of the classic Rock, Paper, Scissors game in Python. This version attempts to incorporate a graphical user interface (using `tkinter` and `Pillow`) to display a "YOU WON" GIF when the user wins.
-
-**Note:** The current game flow still primarily uses **command-line input** for the player's choice, and the GUI elements like the result label and "Play Again" button are meant to display the outcome and handle the restart.
-
-## ✨ Features
-
-* Classic Rock, Paper, Scissors logic against the computer.
-* Uses `tkinter` for displaying the result and a "Play Again" button.
-* Attempts to display a **winner GIF** upon winning (requires a file named `winner.gif`).
-
-## 🛠️ Prerequisites
-
-To run this game, you need Python installed, along with the `tkinter` library (usually included with standard Python installations) and the `Pillow` library for handling image and GIF files.
-
-* **Python 3.x**
-* **Pillow** (`PIL`)
-
-## 💻 Installation
-
-1.  **Clone the repository** (if you're hosting this on GitHub):
-    ```bash
-    git clone https://github.com/Asura-824/Rock-Paper-Scissor.git
-    cd rock-paper-scissors-game
-    ```
-
-2.  **Install the required Python library:**
-    ```bash
-    pip install Pillow
-    ```
-
-3.  **Add the GIF file:**
-    Place a GIF file named `winner.gif` in the same directory as the Python script. This GIF will be displayed when the player wins.
-
-## 🚀 How to Run
-
-1.  Save the provided code as a Python file (e.g., `rps_game.py`).
-2.  Run the script from your terminal:
-    ```bash
-    python rps_game.py
-    ```
-
-3.  **Interaction:**
-    * The game will start, and the console will prompt you to **ENTER THE CHOICE (rock, paper, scissor)**.
-    * Enter your choice in the terminal.
-    * The computer's choice and the result ("TIE", "YOU WON", or "YOU LOST") will be displayed in both the console and the GUI window.
-    * If you win, the `winner.gif` will attempt to play in the GUI window.
-    * If the result is "TIE" or "YOU LOST", a "Play Again" button will appear in the GUI window to restart the game.
-
-## 📁 Code Overview
-
-The script combines command-line input with a `tkinter` GUI:
-
-* **`prs()`:** Contains the core game logic, takes command-line input, determines the winner, and updates the GUI labels.
-* **`play_again()`:** Resets the GUI and calls `prs()` to start a new round.
-* **`display_gif(gif_path)`:** Handles opening and continuously animating the GIF using `PIL.ImageTk`.
-* **GUI Setup:** Initializes the main `tkinter` window (`root`), result label, GIF display label, and the "Play Again" button.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Phone%20Tracking-FF6B6B?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Geocoding-4285F4?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
+</p>
 
 ---
 
-## 🛑 Known Limitations
+## 📋 Overview
 
-* Player input (`input()`) is still purely command-line based, which interrupts the GUI's responsiveness until input is provided. A better GUI design would use `tkinter` buttons for player choices.
-* Requires a local file named `winner.gif` to display the winning animation.
+**Phone Number Detail Tracker** is a Python project using Google's `phonenumbers` library (libphonenumber) to parse and track phone number details. Provides country-based location, carrier name, timezone information, and comprehensive phone number validation, demonstrating modules like Geocoder, Carrier, and Timezone for international telecommunications.
+
+**Perfect for:** Learning phone number validation, geo-location tracking, international dialing, telecom data analysis.
+
+---
+
+## ✨ Key Features
+
+- 🌍 **Location Detection**
+  - Country identification
+  - Region/State extraction
+  - Geographic coordinates
+  - Time zone mapping
+
+- 📱 **Carrier Information**
+  - Carrier name detection
+  - Operator identification
+  - Service provider details
+  - Network type classification
+
+- ⏰ **Timezone Analysis**
+  - Timezone extraction
+  - UTC offset calculation
+  - DST handling
+  - Time zone mapping
+
+- ✔️ **Number Validation**
+  - Format validation
+  - Number type detection
+  - International format support
+  - E.164 standardization
+
+- 🔍 **Advanced Analysis**
+  - Mobile vs landline detection
+  - SMS capability check
+  - Call forwarding detection
+  - Number portability status
+
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology |
+|-----------|-----------|
+| **Language** | Python 3.8+ |
+| **Core Library** | phonenumbers (libphonenumber) |
+| **Geocoding** | Google's geocoder module |
+| **Carrier Detection** | Carrier module |
+| **Timezone** | Timezone module |
+
+---
+
+## 📋 Requirements
+
+```bash
+pip install phonenumbers
+```
+
+---
+
+## 🚀 Quick Start
+
+### 1. **Clone Repository**
+```bash
+git clone https://github.com/ShubhamK-0904/Phno_Detailtracker.git
+cd Phno_Detailtracker
+```
+
+### 2. **Install Dependencies**
+```bash
+pip install phonenumbers
+```
+
+### 3. **Run Tracker**
+```bash
+python phone_tracker.py
+```
+
+---
+
+## 💻 Usage Examples
+
+### **1. Basic Phone Number Parsing**
+```python
+import phonenumbers
+
+# Parse phone number
+number = phonenumbers.parse("+91 98765 43210", "IN")
+print(f"Valid: {phonenumbers.is_valid_number(number)}")
+print(f"E.164 Format: {phonenumbers.format_number(number, phonenumbers.PhoneNumberFormat.E164)}")
+```
+
+### **2. Get Location Information**
+```python
+import phonenumbers
+from phonenumbers import geocoder
+
+number = phonenumbers.parse("+1 202 555 0173", None)
+location = geocoder.description_for_number(number, "en")
+print(f"Location: {location}")
+```
+
+### **3. Get Carrier Information**
+```python
+import phonenumbers
+from phonenumbers import carrier
+
+number = phonenumbers.parse("+91 98765 43210", None)
+carrier_name = carrier.name_for_number(number, "en")
+print(f"Carrier: {carrier_name}")
+```
+
+### **4. Get Timezone Information**
+```python
+import phonenumbers
+from phonenumbers import timezone
+
+number = phonenumbers.parse("+1 202 555 0173", None)
+timezones = timezone.time_zones_for_number(number)
+print(f"Timezones: {timezones}")
+```
+
+### **5. Comprehensive Phone Analysis**
+```python
+import phonenumbers
+from phonenumbers import geocoder, carrier, timezone
+
+def analyze_phone(phone_str, country=None):
+    try:
+        number = phonenumbers.parse(phone_str, country)
+        
+        # Validation
+        is_valid = phonenumbers.is_valid_number(number)
+        is_possible = phonenumbers.is_possible_number(number)
+        
+        # Type detection
+        number_type = phonenumbers.number_type(number)
+        
+        # Location
+        location = geocoder.description_for_number(number, "en")
+        
+        # Carrier
+        carrier_name = carrier.name_for_number(number, "en")
+        
+        # Timezone
+        timezones = timezone.time_zones_for_number(number)
+        
+        return {
+            'Valid': is_valid,
+            'Possible': is_possible,
+            'Type': number_type,
+            'Location': location,
+            'Carrier': carrier_name,
+            'Timezone': timezones,
+            'E164': phonenumbers.format_number(number, phonenumbers.PhoneNumberFormat.E164)
+        }
+    except phonenumbers.NumberParseException as e:
+        return {'Error': str(e)}
+
+result = analyze_phone("+91 98765 43210")
+for key, value in result.items():
+    print(f"{key}: {value}")
+```
+
+### **6. Batch Phone Tracking**
+```python
+import phonenumbers
+from phonenumbers import geocoder, carrier
+
+def batch_analyze(phone_list):
+    results = []
+    for phone in phone_list:
+        try:
+            number = phonenumbers.parse(phone, None)
+            location = geocoder.description_for_number(number, "en")
+            carrier_name = carrier.name_for_number(number, "en")
+            
+            results.append({
+                'Phone': phone,
+                'Valid': phonenumbers.is_valid_number(number),
+                'Location': location,
+                'Carrier': carrier_name
+            })
+        except Exception as e:
+            results.append({'Phone': phone, 'Error': str(e)})
+    
+    return results
+
+phones = ["+91 98765 43210", "+1 202 555 0173", "+44 20 7946 0958"]
+analysis = batch_analyze(phones)
+for result in analysis:
+    print(result)
+```
+
+---
+
+## 🎯 Number Types
+
+| Type | Description |
+|------|-------------|
+| **MOBILE** | Mobile phone number |
+| **FIXED_LINE** | Landline number |
+| **FIXED_LINE_OR_MOBILE** | Could be either |
+| **TOLL_FREE** | Toll-free number |
+| **PREMIUM_RATE** | Premium service |
+| **SHARED_COST** | Shared cost |
+| **VOIP** | VoIP number |
+| **PERSONAL_NUMBER** | Personal number |
+| **PAGER** | Pager number |
+| **UAN** | Universal access number |
+| **VOICEMAIL** | Voicemail number |
+
+---
+
+## 📊 Supported Regions
+
+- ✅ All countries (200+)
+- ✅ International dialing codes
+- ✅ Country-specific formats
+- ✅ Regional variations
+- ✅ Special number types
+
+---
+
+## 🔍 Information You Can Extract
+
+### **Personal Information**
+```
+- Country
+- Region/State
+- City
+- Area code
+- Timezone
+```
+
+### **Service Information**
+```
+- Carrier/Operator
+- Number type (mobile/landline)
+- SMS capability
+- International roaming support
+```
+
+### **Format Options**
+```
+E164:        +1 2025550173
+INTERNATIONAL: +1 202-555-0173
+NATIONAL:    (202) 555-0173
+RFC3966:     tel:+1-202-555-0173
+```
+
+---
+
+## 💡 Real-World Applications
+
+✅ **Contact Verification:** Validate customer phone numbers  
+✅ **Spam Detection:** Identify suspicious numbers  
+✅ **Location Services:** Geo-locate callers  
+✅ **Billing Systems:** Carrier-based routing  
+✅ **CRM Integration:** Auto-populate customer data  
+✅ **Communication Apps:** Format international numbers  
+✅ **Telecom Analytics:** Track carrier distribution  
+
+---
+
+## 🎓 Learning Outcomes
+
+Master these concepts:
+- ✅ Phone number standards (E.164, ITU)
+- ✅ International dialing codes
+- ✅ Carrier and telecom data
+- ✅ Geocoding techniques
+- ✅ Data parsing and validation
+- ✅ Batch processing
+
+---
+
+## 📊 Project Stats
+
+| Metric | Value |
+|--------|-------|
+| **Supported Countries** | 200+ |
+| **Number Types** | 11 |
+| **Format Types** | 4+ |
+| **Timezone Support** | Full |
+
+---
+
+## 🚀 Future Enhancements
+
+- [ ] Web API endpoint
+- [ ] GUI application
+- [ ] Database storage
+- [ ] Real-time SMS tracking
+- [ ] Call detail records analysis
+- [ ] International roaming detection
+- [ ] Number porting status
+- [ ] Fraud detection integration
+
+---
+
+## 🤝 Contributing
+
+Contributions welcome!
+1. Fork repository
+2. Create feature branch
+3. Add improvements
+4. Submit pull request
+
+---
+
+## 📝 License
+
+MIT License - see LICENSE file
+
+---
+
+## 👨‍💻 Author
+
+**Shubham Kadam**
+- GitHub: [@ShubhamK-0904](https://github.com/ShubhamK-0904)
+- LinkedIn: [Shubham Kadam](https://www.linkedin.com/in/shubham-kadam-b8856031a/)
+- Email: shubham85kadam@gmail.com
+
+---
+
+<p align="center">
+  <strong>⭐ If helpful, give it a star! ⭐</strong>
+</p>
+
+<p align="center">
+  Made with ❤️ by Shubham Kadam | Last Updated: May 2026
+</p>
